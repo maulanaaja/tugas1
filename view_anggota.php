@@ -1,9 +1,4 @@
-<?php
-include("koneksi.php");
 
-$tp=query_view($koneksi, "select * from anggota");
-
-?>
 <table class="table table-bordered">
 	<tr>
 		<td>nama</td>
@@ -12,7 +7,9 @@ $tp=query_view($koneksi, "select * from anggota");
 	</tr>
 <?php
 $no=1;
-while (mysql_fetch_array($query_view)){?>
+include ("koneksi.php");
+$tp = mysql_query($server, "select * from anggota");
+while ($r = mysql_fetch_array($tp)){?>
 	<tr>
 		<td></td>
 		<td></td>
