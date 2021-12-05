@@ -1,19 +1,30 @@
+<?php 
+include("koneksi.php");
+$query_view=mysqli_query($koneksi,"select * from anggota");
+// var_dump($query_view);
+// die;
 
-<table class="table table-bordered">
+?>
+</br>
+<a href="input_anggota.php" class="btn btn-danger">Tambah Anggota</a>
+<table class="table table-bordered" border="1">
 	<tr>
-		<td>nama</td>
-		<td>anggota</td>
-		<td>no_tlpn</td>
+		<td>No</td>
+		<td>Nama</td>
+		<td>Alamat</td>
+		<td>No_Tlpn</td>
+		<td colspan="4"></td>
 	</tr>
-<?php
+<?php 
 $no=1;
-include ("koneksi.php");
-$tp = mysql_query($server, "select * from anggota");
-while ($r = mysql_fetch_array($tp)){?>
+while($tampil=mysqli_fetch_array($query_view)){?>
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td><?php echo $no++;?></td>
+		<td><?php echo $tampil['nama'];?></td>
+		<td><?php echo $tampil['alamat'];?></td>
+		<td><?php echo $tampil['no_tlpn'];?></td>
+		<td><a href="edit_anggota.php?id_anggota=<?php echo $tampil['id_anggota'];?>">Edit</a><td>
+		<td><a href="hapus_anggota.php?id_anggota=<?php echo $tampil['id_anggota'];?>">Hapus</a><td>
 	</tr>
-<?php }?> 
+<?php }?>
 </table>
